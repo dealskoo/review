@@ -1,1 +1,1 @@
-# Tag of [Dealskoo](https://www.dealskoo.com)
+# Review of [Dealskoo](https://www.dealskoo.com)

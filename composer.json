@@ -40,6 +40,10 @@
     },
     "require": {
         "php": ">=7.1",
+        "dealskoo/comment": "dev-master",
+        "dealskoo/country": "dev-master",
+        "dealskoo/seller": "dev-master",
+        "dealskoo/tag": "dev-master",
         "laravel/framework": ">=7.20"
     },
     "require-dev": {

@@ -8,11 +8,12 @@ use Dealskoo\Seller\Traits\HasSeller;
 use Dealskoo\Tag\Traits\Taggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
 class Review extends Model
 {
-    use HasFactory, HasCountry, HasSeller, Taggable, Commentable;
+    use HasFactory, HasCountry, HasSeller, Taggable, Commentable, SoftDeletes;
 
     protected $appends = [
         'cover_url'

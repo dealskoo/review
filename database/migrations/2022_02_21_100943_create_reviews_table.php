@@ -25,6 +25,7 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('seller_id');
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('seller_id')->references('id')->on('sellers')->onUpdate('cascade')->onDelete('cascade');
         });

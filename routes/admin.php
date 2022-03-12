@@ -10,7 +10,7 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
     });
 
     Route::middleware(['auth:admin', 'admin_active'])->group(function () {
-        Route::resource('reviews', ReviewController::class)->except(['create', 'store']);
+        Route::resource('reviews', ReviewController::class)->except(['create', 'store', 'destroy']);
     });
 
 });

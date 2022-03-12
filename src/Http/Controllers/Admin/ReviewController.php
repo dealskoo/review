@@ -11,4 +11,19 @@ class ReviewController extends AdminController
     {
 
     }
+
+    private function table(Request $request)
+    {
+
+    }
+
+    public function edit(Request $request)
+    {
+
+    }
+
+    public function update(Request $request)
+    {
+
+    }
 }

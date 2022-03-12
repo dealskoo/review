@@ -16,7 +16,7 @@ class ReviewServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->mergeConfigFrom(__DIR__ . '/../../config/review.php', 'review');
     }
 
     /**
@@ -28,6 +28,10 @@ class ReviewServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
+            $this->publishes([
+                __DIR__ . '/../../config/review.php' => config_path('review.php')
+            ], 'config');
 
             $this->publishes([
                 __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/review')

@@ -31,6 +31,7 @@ class ReviewFactory extends Factory
             'published_at' => $this->faker->dateTime,
             'approved' => $this->faker->boolean,
             'can_comment' => $this->faker->boolean,
+            'views' => $this->faker->numberBetween(0, 1000),
             'country_id' => Country::factory()->create(),
             'seller_id' => Seller::factory()->create(),
         ];

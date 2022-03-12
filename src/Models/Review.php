@@ -27,6 +27,7 @@ class Review extends Model
         'published_at',
         'approved',
         'can_comment',
+        'views',
         'country_id',
         'seller_id'
     ];

@@ -22,6 +22,7 @@ class CreateReviewsTable extends Migration
             $table->timestamp('published_at')->nullable();
             $table->boolean('approved')->default(false);
             $table->boolean('can_comment')->default(true);
+            $table->integer('views')->default(0);
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('seller_id');
             $table->timestamps();

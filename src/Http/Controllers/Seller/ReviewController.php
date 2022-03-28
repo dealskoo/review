@@ -5,6 +5,7 @@ namespace Dealskoo\Review\Http\Controllers\Seller;
 use Carbon\Carbon;
 use Dealskoo\Review\Models\Review;
 use Dealskoo\Seller\Http\Controllers\Controller as SellerController;
+use Dealskoo\Tag\Facades\TagManager;
 use Illuminate\Http\Request;
 
 class ReviewController extends SellerController
@@ -66,7 +67,36 @@ class ReviewController extends SellerController
 
     public function store(Request $request)
     {
+        if ($request->hasFile('cover')) {
+            $request->validate([
+                'title' => ['required', 'string'],
+                'cover' => ['required', 'image', 'max:1000'],
+            ]);
+        } else {
+            $request->validate([
+                'title' => ['required', 'string'],
+            ]);
+        }
+        $review = new Review($request->only([
+            'title',
+            'content'
+        ]));
 
+        if ($request->hasFile('cover')) {
+            $image = $request->file('cover');
+            $filename = time() . '.' . $image->guessExtension();
+            $path = $image->storeAs('review/images/' . date('Ymd'), $filename);
+            $review->cover = $path;
+        }
+        $seller = $request->user();
+        $review->seller_id = $seller->id;
+        $review->country_id = $seller->country->id;
+        $review->can_comment = $request->boolean('can_comment', false);
+        $review->published_at = $request->boolean('published', false) ? Carbon::now() : null;
+        $review->save();
+        $tags = $request->input('tags', []);
+        TagManager::sync($review, $tags);
+        return redirect(route('seller.reviews.index'));
     }
 
     public function edit(Request $request, $id)
@@ -77,7 +107,29 @@ class ReviewController extends SellerController
 
     public function update(Request $request, $id)
     {
-
+        if ($request->hasFile('cover')) {
+            $request->validate([
+                'title' => ['required', 'string'],
+                'cover' => ['required', 'image', 'max:1000'],
+            ]);
+        } else {
+            $request->validate([
+                'title' => ['required', 'string'],
+            ]);
+        }
+        $review = Review::where('seller_id', $request->user()->id)->findOrFail($id);
+        $review->fill($request->only([
+            'title',
+            'content'
+        ]));
+        if ($request->hasFile('cover')) {
+            $image = $request->file('cover');
+            $filename = time() . '.' . $image->guessExtension();
+            $path = $image->storeAs('review/images/' . date('Ymd'), $filename);
+            $review->cover = $path;
+        }
+        $review->save();
+        return redirect(route('seller.reviews.index'));
     }
 
     public function destroy(Request $request, $id)

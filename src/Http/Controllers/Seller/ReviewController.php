@@ -128,6 +128,8 @@ class ReviewController extends SellerController
             $path = $image->storeAs('review/images/' . date('Ymd'), $filename);
             $review->cover = $path;
         }
+        $review->can_comment = $request->boolean('can_comment', false);
+        $review->published_at = $request->boolean('published', false) ? Carbon::now() : null;
         $review->save();
         return redirect(route('seller.reviews.index'));
     }

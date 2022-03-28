@@ -19,5 +19,8 @@ return [
     'published' => '发布',
     'title_placeholder' => '标题',
     'tag_placeholder' => '标签',
-    'edit_review' => '编辑评论'
+    'edit_review' => '编辑评论',
+    'view_review' => '查看评论',
+    'slug_placeholder' => '标识',
+    'approved' => '审核通过'
 ];

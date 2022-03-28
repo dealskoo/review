@@ -19,5 +19,8 @@ return [
     'published' => 'Published',
     'title_placeholder' => 'Title',
     'tag_placeholder' => 'Tag',
-    'edit_review' => 'Edit Review'
+    'edit_review' => 'Edit Review',
+    'view_review' => 'View Review',
+    'slug_placeholder' => 'Slug',
+    'approved' => 'Approved'
 ];

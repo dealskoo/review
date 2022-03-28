@@ -34,7 +34,7 @@
                             </div>
                         @endif
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <input type="text" class="form-control" id="title" name="title" required
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <div class="cover-box">
@@ -57,7 +57,8 @@
                                                  class="img-thumbnail file-pic file-cover">
                                             <div class="upload-image">
                                                 <i class="mdi mdi-cloud-upload upload-btn upload-cover-btn"></i>
-                                                <input class="file-input" tabindex="3" name="cover" type="file" accept="image/*"/>
+                                                <input class="file-input" tabindex="3" name="cover" type="file"
+                                                       accept="image/*"/>
                                             </div>
                                         </div>
                                     </div>

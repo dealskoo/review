@@ -4,7 +4,9 @@ namespace Dealskoo\Review\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use Dealskoo\Admin\Http\Controllers\Controller as AdminController;
+use Dealskoo\Admin\Rules\Slug;
 use Dealskoo\Review\Models\Review;
+use Dealskoo\Tag\Facades\TagManager;
 use Illuminate\Http\Request;
 
 class ReviewController extends AdminController
@@ -72,16 +74,49 @@ class ReviewController extends AdminController
 
     public function show(Request $request, $id)
     {
-
+        abort_if(!$request->user()->canDo('reviews.show'), 403);
+        $review = Review::query()->findOrFail($id);
+        return view('review::admin.review.show', ['review' => $review]);
     }
 
     public function edit(Request $request, $id)
     {
-
+        abort_if(!$request->user()->canDo('reviews.edit'), 403);
+        $review = review::query()->findOrFail($id);
+        return view('review::admin.review.edit', ['review' => $review]);
     }
 
     public function update(Request $request, $id)
     {
-
+        if ($request->hasFile('cover')) {
+            $request->validate([
+                'title' => ['required', 'string'],
+                'slug' => ['required', new Slug('reviews', 'slug', $id, 'id')],
+                'cover' => ['required', 'image', 'max:1000']
+            ]);
+        } else {
+            $request->validate([
+                'title' => ['required', 'string'],
+                'slug' => ['required', new Slug('reviews', 'slug', $id, 'id')]
+            ]);
+        }
+        $review = Review::query()->findOrFail($id);
+        $review->fill($request->only([
+            'title',
+            'slug'
+        ]));
+        if ($request->hasFile('cover')) {
+            $image = $request->file('cover');
+            $filename = time() . '.' . $image->guessExtension();
+            $path = $image->storeAs('review/images/' . date('Ymd'), $filename);
+            $review->cover = $path;
+        }
+        $review->can_comment = $request->boolean('can_comment', false);
+        $review->published_at = $request->boolean('published', false) ? Carbon::now() : null;
+        $review->approved_at = $request->boolean('approved', false) ? Carbon::now() : null;
+        $review->save();
+        $tags = $request->input('tags', []);
+        TagManager::sync($review, $tags);
+        return back()->with('success', __('admin::admin.update_success'));
     }
 }

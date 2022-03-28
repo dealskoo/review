@@ -88,6 +88,7 @@ class ReviewController extends AdminController
 
     public function update(Request $request, $id)
     {
+        abort_if(!$request->user()->canDo('reviews.edit'), 403);
         if ($request->hasFile('cover')) {
             $request->validate([
                 'title' => ['required', 'string'],

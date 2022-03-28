@@ -131,6 +131,8 @@ class ReviewController extends SellerController
         $review->can_comment = $request->boolean('can_comment', false);
         $review->published_at = $request->boolean('published', false) ? Carbon::now() : null;
         $review->save();
+        $tags = $request->input('tags', []);
+        TagManager::sync($review, $tags);
         return redirect(route('seller.reviews.index'));
     }
 

@@ -26,7 +26,7 @@ class Review extends Model
         'cover',
         'content',
         'published_at',
-        'approved',
+        'approved_at',
         'can_comment',
         'views',
         'country_id',
@@ -35,7 +35,7 @@ class Review extends Model
 
     protected $casts = [
         'published_at' => 'datetime',
-        'approved' => 'boolean',
+        'approved_at' => 'datetime',
         'can_comment' => 'boolean',
     ];
 
@@ -51,6 +51,6 @@ class Review extends Model
 
     public function scopeApproved(Builder $builder)
     {
-        return $builder->where('approved', true);
+        return $builder->whereNotNull('approved_at');
     }
 }

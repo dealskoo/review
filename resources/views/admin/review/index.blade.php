@@ -31,6 +31,7 @@
                                 <th>{{ __('review::review.can_comment') }}</th>
                                 <th>{{ __('review::review.views') }}</th>
                                 <th>{{ __('review::review.published_at') }}</th>
+                                <th>{{ __('review::review.approved_at') }}</th>
                                 <th>{{ __('review::review.created_at') }}</th>
                                 <th>{{ __('review::review.updated_at') }}</th>
                                 <th>{{ __('review::review.action') }}</th>
@@ -64,6 +65,7 @@
                     {'orderable': true},
                     {'orderable': true},
                     {'orderable': true},
+                    {'orderable': true},
                     {'orderable': false},
                 ],
                 "order": [[0, "desc"]],
@@ -71,7 +73,7 @@
                     $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
                     $('#reviews_table tr td:nth-child(2)').addClass('table-user');
                     $('#reviews_table tr td:nth-child(3)').addClass('table-user');
-                    $('#reviews_table tr td:nth-child(10)').addClass('table-action');
+                    $('#reviews_table tr td:nth-child(11)').addClass('table-action');
                     delete_listener();
                 }
             });

@@ -29,7 +29,7 @@ class ReviewFactory extends Factory
             'cover' => $this->faker->imageUrl,
             'content' => $this->faker->text,
             'published_at' => null,
-            'approved' => $this->faker->boolean,
+            'approved_at' => null,
             'can_comment' => $this->faker->boolean,
             'views' => $this->faker->numberBetween(0, 1000),
             'country_id' => Country::factory()->create(),
@@ -50,7 +50,7 @@ class ReviewFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'approved' => true,
+                'approved_at' => $this->faker->dateTime,
             ];
         });
     }

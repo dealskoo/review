@@ -24,7 +24,7 @@ class ReviewController extends AdminController
         $start = $request->input('start', 0);
         $limit = $request->input('length', 10);
         $keyword = $request->input('search.value');
-        $columns = ['id', 'title', 'seller_id', 'country_id', 'can_comment', 'views', 'published_at', 'created_at', 'updated_at'];
+        $columns = ['id', 'title', 'seller_id', 'country_id', 'can_comment', 'views', 'published_at', 'approved_at', 'created_at', 'updated_at'];
         $column = $columns[$request->input('order.0.column', 0)];
         $desc = $request->input('order.0.dir', 'desc');
         $query = Review::query();
@@ -47,6 +47,7 @@ class ReviewController extends AdminController
             $row[] = $review->can_comment;
             $row[] = $review->views;
             $row[] = $review->published_at != null ? Carbon::parse($review->published_at)->format('Y-m-d H:i:s') : null;
+            $row[] = $review->approved_at != null ? Carbon::parse($review->approved_at)->format('Y-m-d H:i:s') : null;
             $row[] = Carbon::parse($review->created_at)->format('Y-m-d H:i:s');
             $row[] = Carbon::parse($review->updated_at)->format('Y-m-d H:i:s');
             $view_link = '';

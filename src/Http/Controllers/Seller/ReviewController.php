@@ -138,6 +138,6 @@ class ReviewController extends SellerController
 
     public function destroy(Request $request, $id)
     {
-        return ['status' => Review::where('seller_id', $request->user()->id)->delete($id)];
+        return ['status' => Review::where('seller_id', $request->user()->id)->where('id', $id)->delete()];
     }
 }

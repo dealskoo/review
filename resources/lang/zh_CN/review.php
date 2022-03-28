@@ -18,5 +18,6 @@ return [
     'add_review' => '添加评论',
     'published' => '发布',
     'title_placeholder' => '标题',
-    'tag_placeholder' => '标签'
+    'tag_placeholder' => '标签',
+    'edit_review' => '编辑评论'
 ];

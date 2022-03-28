@@ -18,5 +18,6 @@ return [
     'add_review' => 'Add Review',
     'published' => 'Published',
     'title_placeholder' => 'Title',
-    'tag_placeholder' => 'Tag'
+    'tag_placeholder' => 'Tag',
+    'edit_review' => 'Edit Review'
 ];

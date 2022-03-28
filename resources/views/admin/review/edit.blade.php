@@ -48,7 +48,7 @@
                                                value="{{ old('slug',$review->slug) }}" tabindex="2"
                                                placeholder="{{ __('review::review.slug_placeholder') }}">
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12 markdown-body">
                                         @unless(empty($review->content))
                                             {!! Str::markdown($review->content) !!}
                                         @endunless
@@ -136,4 +136,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('css')
+    <link href="{{ asset('/vendor/admin/css/vendor/github-markdown-light.css') }}" rel="stylesheet" type="text/css"/>
 @endsection

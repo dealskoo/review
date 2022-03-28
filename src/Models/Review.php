@@ -6,6 +6,7 @@ use Dealskoo\Comment\Traits\Commentable;
 use Dealskoo\Country\Traits\HasCountry;
 use Dealskoo\Seller\Traits\HasSeller;
 use Dealskoo\Tag\Traits\Taggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -41,5 +42,15 @@ class Review extends Model
     public function getCoverUrlAttribute()
     {
         return empty($this->cover) ? '' : Storage::url($this->cover);
+    }
+
+    public function scopePublished(Builder $builder)
+    {
+        return $builder->whereNotNull('published_at');
+    }
+
+    public function scopeApproved(Builder $builder)
+    {
+        return $builder->where('approved', true);
     }
 }

@@ -28,12 +28,30 @@ class ReviewFactory extends Factory
             'title' => $this->faker->title,
             'cover' => $this->faker->imageUrl,
             'content' => $this->faker->text,
-            'published_at' => $this->faker->dateTime,
+            'published_at' => null,
             'approved' => $this->faker->boolean,
             'can_comment' => $this->faker->boolean,
             'views' => $this->faker->numberBetween(0, 1000),
             'country_id' => Country::factory()->create(),
             'seller_id' => Seller::factory()->create(),
         ];
+    }
+
+    public function published()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'published_at' => $this->faker->dateTime,
+            ];
+        });
+    }
+
+    public function approved()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'approved' => true,
+            ];
+        });
     }
 }

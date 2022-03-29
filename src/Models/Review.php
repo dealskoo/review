@@ -2,6 +2,7 @@
 
 namespace Dealskoo\Review\Models;
 
+use Dealskoo\Admin\Traits\HasSlug;
 use Dealskoo\Comment\Traits\Commentable;
 use Dealskoo\Country\Traits\HasCountry;
 use Dealskoo\Seller\Traits\HasSeller;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Review extends Model
 {
-    use HasFactory, HasCountry, HasSeller, Taggable, Commentable, SoftDeletes;
+    use HasFactory, HasSlug, HasCountry, HasSeller, Taggable, Commentable, SoftDeletes;
 
     protected $appends = [
         'cover_url'

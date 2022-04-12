@@ -18,7 +18,8 @@ class Review extends Model
     use HasFactory, HasSlug, HasCountry, HasSeller, Taggable, Commentable, SoftDeletes;
 
     protected $appends = [
-        'cover_url'
+        'cover_url',
+        'summary'
     ];
 
     protected $fillable = [
@@ -53,5 +54,10 @@ class Review extends Model
     public function scopeApproved(Builder $builder)
     {
         return $builder->whereNotNull('approved_at');
+    }
+
+    public function getSummaryAttribute()
+    {
+        return Str::limit(strip_tags(Str::markdown($this->content)), 100);
     }
 }

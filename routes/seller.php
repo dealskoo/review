@@ -10,7 +10,7 @@ Route::middleware(['web', 'seller_locale'])->prefix(config('seller.route.prefix'
 
     });
 
-    Route::middleware(['auth:seller', 'verified:seller.verification.notice', 'seller_active'])->group(function () {
+    Route::middleware(['auth:seller', 'verified:seller.verification.notice', 'seller_active', 'subscription:lite'])->group(function () {
 
         Route::resource('reviews', ReviewController::class)->except(['show']);
         Route::post('/reviews/upload', [UploadController::class, 'upload'])->name('reviews.upload');

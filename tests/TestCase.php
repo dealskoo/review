@@ -4,7 +4,7 @@ namespace Dealskoo\Review\Tests;
 
 use Dealskoo\Review\Providers\ReviewServiceProvider;
 
-abstract class TestCase extends \Dealskoo\Seller\Tests\TestCase
+abstract class TestCase extends \Dealskoo\Billing\Tests\TestCase
 {
     protected function getPackageProviders($app)
     {

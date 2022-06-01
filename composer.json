@@ -40,11 +40,13 @@
     },
     "require": {
         "php": ">=7.1",
+        "dealskoo/billing": "dev-master",
         "dealskoo/comment": "dev-master",
         "dealskoo/country": "dev-master",
         "dealskoo/seller": "dev-master",
         "dealskoo/tag": "dev-master",
-        "laravel/framework": ">=7.20"
+        "laravel/framework": ">=7.20",
+        "laravel/scout": "^9.4"
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",

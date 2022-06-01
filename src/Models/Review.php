@@ -12,10 +12,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Scout\Searchable;
 
 class Review extends Model
 {
-    use HasFactory, HasSlug, HasCountry, HasSeller, Taggable, Commentable, SoftDeletes;
+    use HasFactory, HasSlug, HasCountry, HasSeller, Taggable, Commentable, SoftDeletes, Searchable;
 
     protected $appends = [
         'cover_url',
@@ -59,5 +60,21 @@ class Review extends Model
     public function getSummaryAttribute()
     {
         return Str::limit(strip_tags(Str::markdown($this->content)), 100);
+    }
+
+    public function shouldBeSearchable()
+    {
+        return $this->approved_at ? true : false;
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->only([
+            'slug',
+            'title',
+            'content',
+            'country_id',
+            'seller_id'
+        ]);
     }
 }

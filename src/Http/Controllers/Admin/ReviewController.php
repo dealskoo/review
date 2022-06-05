@@ -8,6 +8,7 @@ use Dealskoo\Admin\Rules\Slug;
 use Dealskoo\Review\Models\Review;
 use Dealskoo\Tag\Facades\TagManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ReviewController extends AdminController
 {
@@ -43,7 +44,7 @@ class ReviewController extends AdminController
         foreach ($reviews as $review) {
             $row = [];
             $row[] = $review->id;
-            $row[] = '<img src="' . $review->cover_url . '" alt="' . $review->title . '" title="' . $review->title . '" class="me-1"><p class="m-0 d-inline-block align-middle font-16">' . $review->title . '</p>';
+            $row[] = '<img src="' . $review->cover_url . '" alt="' . $review->title . '" title="' . $review->title . '" class="me-1"><p class="m-0 d-inline-block align-middle font-16">' . Str::words($review->title, 5, '...') . '</p>';
             $row[] = '<img src="' . $review->seller->avatar_url . '" alt="' . $review->seller->name . '" title="' . $review->seller->name . '" class="me-1"><p class="m-0 d-inline-block align-middle font-16">' . $review->seller->name . '</p>';
             $row[] = $review->country->name;
             $row[] = $review->can_comment;

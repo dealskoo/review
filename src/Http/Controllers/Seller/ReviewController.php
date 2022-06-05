@@ -7,6 +7,7 @@ use Dealskoo\Review\Models\Review;
 use Dealskoo\Seller\Http\Controllers\Controller as SellerController;
 use Dealskoo\Tag\Facades\TagManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ReviewController extends SellerController
 {
@@ -39,7 +40,7 @@ class ReviewController extends SellerController
         foreach ($reviews as $review) {
             $row = [];
             $row[] = $review->id;
-            $row[] = '<img src="' . $review->cover_url . '" alt="' . $review->title . '" title="' . $review->title . '" class="me-1"><p class="m-0 d-inline-block align-middle font-16">' . $review->title . '</p>';
+            $row[] = '<img src="' . $review->cover_url . '" alt="' . $review->title . '" title="' . $review->title . '" class="me-1"><p class="m-0 d-inline-block align-middle font-16">' . Str::words($review->title, 5, '...') . '</p>';
             $row[] = $review->country->name;
             $row[] = $review->can_comment;
             $row[] = $review->views;

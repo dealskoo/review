@@ -22,8 +22,6 @@ class ReviewFactory extends Factory
      */
     public function definition()
     {
-        $seller = Seller::factory()->create();
-
         return [
             'slug' => $this->faker->unique()->slug,
             'title' => $this->faker->title,
@@ -33,8 +31,10 @@ class ReviewFactory extends Factory
             'approved_at' => null,
             'can_comment' => $this->faker->boolean,
             'views' => $this->faker->numberBetween(0, 1000),
-            'country_id' => $seller->country_id,
-            'seller_id' => $seller->id,
+            'seller_id' => Seller::factory(),
+            'country_id' => function ($review) {
+                return Seller::find($review['seller_id'])->country_id;
+            },
         ];
     }
 

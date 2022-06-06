@@ -1,8 +1,8 @@
 <?php
 return [
-    'reviews' => '评论',
-    'review' => '评论',
-    'reviews_list' => '评论列表',
+    'reviews' => '审查',
+    'review' => '审查',
+    'reviews_list' => '审查列表',
     'id' => '编号',
     'title' => '标题',
     'slug' => '标识',
@@ -15,12 +15,12 @@ return [
     'created_at' => '创建时间',
     'updated_at' => '更新时间',
     'action' => '操作',
-    'add_review' => '添加评论',
+    'add_review' => '添加审查',
     'published' => '发布',
     'title_placeholder' => '标题',
     'tag_placeholder' => '标签',
-    'edit_review' => '编辑评论',
-    'view_review' => '查看评论',
+    'edit_review' => '编辑审查',
+    'view_review' => '查看审查',
     'slug_placeholder' => '标识',
     'approved' => '审核通过'
 ];

@@ -48,7 +48,7 @@ class ReviewServiceProvider extends ServiceProvider
 
         AdminMenu::route('admin.reviews.index', 'review::review.reviews', [], ['icon' => 'uil-notes', 'permission' => 'reviews.index'])->order(4);
 
-        PermissionManager::add(new Permission('reviews.index', 'Review Lists'));
+        PermissionManager::add(new Permission('reviews.index', 'Review List'));
         PermissionManager::add(new Permission('reviews.show', 'View Review'), 'reviews.index');
         PermissionManager::add(new Permission('reviews.edit', 'Edit Review'), 'reviews.index');
 

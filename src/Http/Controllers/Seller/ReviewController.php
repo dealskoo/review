@@ -2,7 +2,6 @@
 
 namespace Dealskoo\Review\Http\Controllers\Seller;
 
-use Carbon\Carbon;
 use Dealskoo\Review\Models\Review;
 use Dealskoo\Seller\Http\Controllers\Controller as SellerController;
 use Dealskoo\Tag\Facades\TagManager;
@@ -93,7 +92,7 @@ class ReviewController extends SellerController
         $review->seller_id = $seller->id;
         $review->country_id = $seller->country->id;
         $review->can_comment = $request->boolean('can_comment', false);
-        $review->published_at = $request->boolean('published', false) ? Carbon::now() : null;
+        $review->published_at = $request->boolean('published', false) ? now() : null;
         $review->save();
         $tags = $request->input('tags', []);
         TagManager::sync($review, $tags);
@@ -130,7 +129,7 @@ class ReviewController extends SellerController
             $review->cover = $path;
         }
         $review->can_comment = $request->boolean('can_comment', false);
-        $review->published_at = $request->boolean('published', false) ? Carbon::now() : null;
+        $review->published_at = $request->boolean('published', false) ? now() : null;
         $review->save();
         $tags = $request->input('tags', []);
         TagManager::sync($review, $tags);

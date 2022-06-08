@@ -2,7 +2,6 @@
 
 namespace Dealskoo\Review\Http\Controllers\Admin;
 
-use Carbon\Carbon;
 use Dealskoo\Admin\Http\Controllers\Controller as AdminController;
 use Dealskoo\Admin\Rules\Slug;
 use Dealskoo\Review\Models\Review;
@@ -114,8 +113,8 @@ class ReviewController extends AdminController
             $review->cover = $path;
         }
         $review->can_comment = $request->boolean('can_comment', false);
-        $review->published_at = $request->boolean('published', false) ? Carbon::now() : null;
-        $review->approved_at = $request->boolean('approved', false) ? Carbon::now() : null;
+        $review->published_at = $request->boolean('published', false) ? now() : null;
+        $review->approved_at = $request->boolean('approved', false) ? now() : null;
         $review->save();
         $tags = $request->input('tags', []);
         TagManager::sync($review, $tags);

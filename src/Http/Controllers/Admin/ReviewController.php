@@ -49,10 +49,10 @@ class ReviewController extends AdminController
             $row[] = $review->country->name;
             $row[] = $review->can_comment;
             $row[] = $review->views;
-            $row[] = $review->published_at != null ? Carbon::parse($review->published_at)->format('Y-m-d H:i:s') : null;
-            $row[] = $review->approved_at != null ? Carbon::parse($review->approved_at)->format('Y-m-d H:i:s') : null;
-            $row[] = Carbon::parse($review->created_at)->format('Y-m-d H:i:s');
-            $row[] = Carbon::parse($review->updated_at)->format('Y-m-d H:i:s');
+            $row[] = $review->published_at != null ? $review->published_at->format('Y-m-d H:i:s') : null;
+            $row[] = $review->approved_at != null ? $review->approved_at->format('Y-m-d H:i:s') : null;
+            $row[] = $review->created_at->format('Y-m-d H:i:s');
+            $row[] = $review->updated_at->format('Y-m-d H:i:s');
             $view_link = '';
             if ($can_view) {
                 $view_link = '<a href="' . route('admin.reviews.show', $review) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';

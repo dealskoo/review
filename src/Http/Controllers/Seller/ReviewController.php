@@ -44,10 +44,10 @@ class ReviewController extends SellerController
             $row[] = $review->country->name;
             $row[] = $review->can_comment;
             $row[] = $review->views;
-            $row[] = $review->published_at != null ? Carbon::parse($review->published_at)->format('Y-m-d H:i:s') : null;
-            $row[] = $review->approved_at != null ? Carbon::parse($review->approved_at)->format('Y-m-d H:i:s') : null;
-            $row[] = Carbon::parse($review->created_at)->format('Y-m-d H:i:s');
-            $row[] = Carbon::parse($review->updated_at)->format('Y-m-d H:i:s');
+            $row[] = $review->published_at != null ? $review->published_at->format('Y-m-d H:i:s') : null;
+            $row[] = $review->approved_at != null ? $review->approved_at->format('Y-m-d H:i:s') : null;
+            $row[] = $review->created_at->format('Y-m-d H:i:s');
+            $row[] = $review->updated_at->format('Y-m-d H:i:s');
             $edit_link = '<a href="' . route('seller.reviews.edit', $review) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
             $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="reviews_table" data-url="' . route('seller.reviews.destroy', $review) . '"> <i class="mdi mdi-delete"></i></a>';
             $row[] = $edit_link . $destroy_link;

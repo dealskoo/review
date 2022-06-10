@@ -5,8 +5,11 @@ namespace Dealskoo\Review\Models;
 use Dealskoo\Admin\Traits\HasSlug;
 use Dealskoo\Comment\Traits\Commentable;
 use Dealskoo\Country\Traits\HasCountry;
+use Dealskoo\Favorite\Traits\Favoriteable;
+use Dealskoo\Like\Traits\Likeable;
 use Dealskoo\Seller\Traits\HasSeller;
 use Dealskoo\Tag\Traits\Taggable;
+use Dealskoo\Thumb\Traits\Thumbable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +20,7 @@ use Laravel\Scout\Searchable;
 
 class Review extends Model
 {
-    use HasFactory, HasSlug, HasCountry, HasSeller, Taggable, Commentable, SoftDeletes, Searchable;
+    use HasFactory, HasSlug, HasCountry, HasSeller, Taggable, Commentable, Likeable, Favoriteable, Thumbable, SoftDeletes, Searchable;
 
     protected $appends = [
         'cover_url',
